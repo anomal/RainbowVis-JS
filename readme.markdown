@@ -3,7 +3,7 @@ RainbowVis-JS
 
 A JavaScript library for colour data visualization. Easily map numbers to a smooth-transitioning colour legend.
 
-The Rainbow class by default maps the range 0 to 100 (inclusive) to the colours of the rainbow from red to blue (e.g. red, yellow, lime, blue).
+The Rainbow class by default maps the range 0 to 100 (inclusive) to the colours of the rainbow (i.e., a gradient transitioning from red to yellow to lime to blue).
 
 See example.html
 
