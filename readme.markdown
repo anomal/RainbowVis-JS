@@ -5,7 +5,7 @@ A JavaScript library for colour data visualization. Easily map numbers to a smoo
 
 The Rainbow class by default maps the range 0 to 100 (inclusive) to the colours of the rainbow from red to blue (e.g. red, yellow, lime, blue).
 
-[See example.](example.html)
+See example.html
 
 `var rainbow = new Rainbow();` creates new instance of Rainbow. By default, the number range is from 0 to 100.
 
