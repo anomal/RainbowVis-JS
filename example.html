@@ -15,8 +15,8 @@ try {
 	s += '<hr />';
 
 	rainbow.setSpectrum('red', 'white', '00ff00');
-	rainbow.setNumberRange(0,1);
-	for (var i = 0; i <= 10 ; i++) {
+	rainbow.setNumberRange(-1,1);
+	for (var i = -10; i <= 10 ; i++) {
 		var hex = '#' + rainbow.colourAt(i/10);
 		s += '<p style="color:' + hex + '">' + hex + '</p>';
 	}

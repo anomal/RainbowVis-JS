@@ -13,4 +13,4 @@ See example.html
 
 `setSpectrum(colour1, colour2 [,colourN])` sets the spectrum of the Rainbow object. You must have a minimum of two colours, but you can specify more than two colours. Colours can be in the form 'red', 'ff0000', or '#ff0000'. For example, `rainbow.setSpectrum('red', 'yellow', 'white');` makes the "rainbow" a colour gradient from red to yellow to white.
 
-`setNumberRange(minNumber, maxNumber)` sets the number range of the Rainbow object. It currently works for positive numbers. 
+`setNumberRange(minNumber, maxNumber)` sets the number range of the Rainbow object. 
