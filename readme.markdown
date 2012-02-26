@@ -9,8 +9,8 @@ See example.html
 
 `var rainbow = new Rainbow();` creates new instance of Rainbow. By default, the number range is from 0 to 100.
 
-`rainbow.colourAt(number)` returns the colour string corresponding to the number in hex colour format (e.g., 'ffffff'). If number is out of range, it returns the appropriate hex colour corresponding to either the minNumber or maxNumber.
+`rainbow.colourAt(number);` returns the colour string corresponding to the number in hex colour format (e.g., 'ffffff'). If number is out of range, it returns the appropriate hex colour corresponding to either the minNumber or maxNumber.
 
-`rainbow.setSpectrum(colour1, colour2 [,colourN])` sets the spectrum of the Rainbow object. You must have a minimum of two colours, but you can specify more than two colours. Colours can be in the form 'red', 'ff0000', or '#ff0000'. For example, `rainbow.setSpectrum('red', 'yellow', 'white');` makes the "rainbow" a colour gradient from red to yellow to white.
+`rainbow.setSpectrum(colour1, colour2 [,colourN]);` sets the spectrum of the Rainbow object. You must have a minimum of two colours, but you can specify more than two colours. Colours can be in the form 'red', 'ff0000', or '#ff0000'. For example, `rainbow.setSpectrum('red', 'yellow', 'white');` makes the "rainbow" a colour gradient from red to yellow to white.
 
-`rainbow.setNumberRange(minNumber, maxNumber)` sets the number range of the Rainbow object. 
+`rainbow.setNumberRange(minNumber, maxNumber);` sets the number range of the Rainbow object. 
