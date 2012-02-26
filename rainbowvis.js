@@ -49,7 +49,7 @@ function Rainbow()
 			return gradients[0].colourAt(number);
 		} else {
 			var segment = (maxNum - minNum)/(gradients.length);
-			var index = Math.min(Math.floor((number - minNum)/segment), gradients.length - 1);
+			var index = Math.min(Math.floor((Math.max(number, minNum) - minNum)/segment), gradients.length - 1);
 			return gradients[index].colourAt(number);
 		}
 	}
