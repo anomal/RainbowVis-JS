@@ -96,10 +96,12 @@ function ColourGradient()
 
 	this.colourAt = function (number)
 	{
-		return calcHex(number,'red') + calcHex(number,'green') + calcHex(number,'blue');
+		return calcHex(number, startColour.substring(0,2), endColour.substring(0,2)) 
+			+ calcHex(number, startColour.substring(2,4), endColour.substring(2,4)) 
+			+ calcHex(number, startColour.substring(4,6), endColour.substring(4,6));
 	}
 	
-	function calcHex(number, channel)
+	function calcHex(number, channelStart_Base16, channelEnd_Base16)
 	{
 		var num = number;
 		if (num < minNum) {
@@ -109,18 +111,8 @@ function ColourGradient()
 			num = maxNum;
 		} 
 		var numRange = maxNum - minNum;
-		var cStart_Base10 = 0;
-		var cEnd_Base10 = 0;
-		if (channel == 'red') {
-			cStart_Base10 = parseInt(startColour.substring(0,2), 16);
-			cEnd_Base10 =  parseInt(endColour.substring(0,2), 16);
-		} else if (channel == 'green') {
-			cStart_Base10 = parseInt(startColour.substring(2,4), 16);
-			cEnd_Base10 =  parseInt(endColour.substring(2,4), 16);
-		} else if (channel == 'blue') {
-			cStart_Base10 = parseInt(startColour.substring(4,6), 16);
-			cEnd_Base10 =  parseInt(endColour.substring(4,6), 16);
-		} 
+		var cStart_Base10 = parseInt(channelStart_Base16, 16);
+		var cEnd_Base10 = parseInt(channelEnd_Base16, 16); 
 		var cPerUnit = (cEnd_Base10 - cStart_Base10)/numRange;
 		var c_Base10 = Math.round(cPerUnit * (num - minNum) + cStart_Base10);
 		return formatHex(c_Base10.toString(16));
@@ -137,7 +129,7 @@ function ColourGradient()
 	
 	function isHexColour(string)
 	{
-		var regex = /^#?[0-9a-f]{6}$/i;
+		var regex = /^#?[0-9a-fA-F]{6}$/i;
 		return regex.test(string);
 	}
 

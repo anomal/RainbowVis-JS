@@ -10,15 +10,15 @@ try {
 	var s = '';
 	for (var i = 0; i <= 100; i = i + 10) {
 		var hex = '#' + rainbow.colourAt(i);
-		s += '<p style="color:' + hex + '">' + hex + '</p>';
+		s += '<p style="color:' + hex + '">' + i + ' -&gt; ' + hex + '</p>';
 	}
 	s += '<hr />';
 
-	rainbow.setSpectrum('red', 'white', '00ff00');
-	rainbow.setNumberRange(-1,1);
-	for (var i = -10; i <= 10 ; i++) {
+	rainbow.setSpectrum('red', 'FFFFFF', '#00ff00');
+	rainbow.setNumberRange(-0.5, 0.5);
+	for (var i = -5; i <= 5 ; i++) {
 		var hex = '#' + rainbow.colourAt(i/10);
-		s += '<p style="color:' + hex + '">' + hex + '</p>';
+		s += '<p style="color:' + hex + '">' + i/10 + ' -&gt; ' + hex + '</p>';
 	}
 	document.write(s);
 } catch (err) {
