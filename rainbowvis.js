@@ -49,12 +49,7 @@ function Rainbow()
 			return gradients[0].colourAt(number);
 		} else {
 			var segment = (maxNum - minNum)/(gradients.length);
-			var index = 0;
-			if (minNum < 0) {
-				index = Math.min(Math.floor((number - minNum)/segment), gradients.length - 1);
-			} else {
-				index = Math.min(Math.floor(number/segment), gradients.length - 1);
-			}
+			var index = Math.min(Math.floor((number - minNum)/segment), gradients.length - 1);
 			return gradients[index].colourAt(number);
 		}
 	}
