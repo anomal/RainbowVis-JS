@@ -4,26 +4,52 @@
 </script>
 </head>
 <body>
+<h2>Mappings</h2>
+<div id="mappings"></div>
+<h2>Canvas Drawing</h2>
+<canvas id="MyRainbow" width="300" height="300">
+<p>Rainbow arc example. Your browser doesn't support canvas.</p>
+</canvas>
 <script type="text/javascript">
 try {
 	var rainbow = new Rainbow(); // by default, range is 0 to 100
-	var s = '';
+	var s = '<h3>Default</h3>';
 	for (var i = 0; i <= 100; i = i + 10) {
 		var hex = '#' + rainbow.colourAt(i);
-		s += '<p style="color:' + hex + '">' + i + ' -&gt; ' + hex + '</p>';
+		s += '<span style="color:' + hex + '">' + i + ' -&gt; ' + hex + '</span><br/>';
 	}
-	s += '<hr />';
-
+	s += '<h3>Custom</h3>';
 	rainbow.setSpectrum('red', 'FFFFFF', '#00ff00');
 	rainbow.setNumberRange(-0.5, 0.5);
 	for (var i = -5; i <= 5 ; i++) {
 		var hex = '#' + rainbow.colourAt(i/10);
-		s += '<p style="color:' + hex + '">' + i/10 + ' -&gt; ' + hex + '</p>';
+		s += '<span style="color:' + hex + '">' + i/10 + ' -&gt; ' + hex + '</span><br/>';
 	}
-	document.write(s);
+	document.getElementById("mappings").innerHTML = s;
 } catch (err) {
 	alert(err);
 }
+
+// CANVAS
+var RAINBOW_WIDTH = 60;
+var RAINBOW_RADIUS = 130;
+
+window.onload = function(){
+	var rainbow = new Rainbow();
+	rainbow.setNumberRange(1, RAINBOW_WIDTH);
+	rainbow.setSpectrum('FF0000', 'FFFF00', '00FF00', '00FFFF', '0000FF', 'FF00FF');
+
+    	var canvas = document.getElementById('MyRainbow');
+    	var context = canvas.getContext('2d');
+
+    	context.lineWidth = 1;
+	for (var i = 1; i <= RAINBOW_WIDTH; i++) {
+		context.beginPath();
+		context.arc(canvas.width / 2, canvas.width / 2, RAINBOW_RADIUS - i + 1, Math.PI, 0, false);
+    		context.strokeStyle = rainbow.colourAt(i); 
+    		context.stroke();
+	}
+};
 </script>
 </body>
 </html>
