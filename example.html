@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
 <head>
+<title>RainbowVis-JS Examples</title>
 <script src="rainbowvis.js">
 </script>
 </head>
@@ -46,7 +48,7 @@ window.onload = function(){
 	for (var i = 1; i <= RAINBOW_WIDTH; i++) {
 		context.beginPath();
 		context.arc(canvas.width / 2, canvas.width / 2, RAINBOW_RADIUS - i + 1, Math.PI, 0, false);
-    		context.strokeStyle = rainbow.colourAt(i); 
+    		context.strokeStyle = '#' + rainbow.colourAt(i); 
     		context.stroke();
 	}
 };
