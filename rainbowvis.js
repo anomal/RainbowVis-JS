@@ -32,6 +32,7 @@ function Rainbow()
 			colours = spectrum;
 		}
 	}
+	this.setColors = this.setColours;
 
 	this.setSpectrum = function () 
 	{
@@ -53,6 +54,7 @@ function Rainbow()
 			return gradients[index].colourAt(number);
 		}
 	}
+	this.colorAt = this.colourAt;
 
 	this.setNumberRange = function (minNumber, maxNumber)
 	{
