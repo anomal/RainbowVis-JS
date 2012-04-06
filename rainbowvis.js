@@ -32,6 +32,7 @@ function Rainbow()
 			colours = spectrum;
 		}
 	}
+	this.setColors = this.setColours;
 
 	this.setSpectrum = function () 
 	{
@@ -53,6 +54,7 @@ function Rainbow()
 			return gradients[index].colourAt(number);
 		}
 	}
+	this.colorAt = this.colourAt;
 
 	this.setNumberRange = function (minNumber, maxNumber)
 	{
@@ -139,6 +141,7 @@ function ColourGradient()
 				['lime', '00ff00'],
 				['blue', '0000ff'],
 				['yellow', 'ffff00'],
+				['orange', 'ff8000'],
 				['aqua', '00ffff'],
 				['fuchsia', 'ff00ff'],
 				['white', 'ffffff'],
