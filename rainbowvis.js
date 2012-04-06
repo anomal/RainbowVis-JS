@@ -139,6 +139,7 @@ function ColourGradient()
 				['lime', '00ff00'],
 				['blue', '0000ff'],
 				['yellow', 'ffff00'],
+				['orange', 'ff8000'],
 				['aqua', '00ffff'],
 				['fuchsia', 'ff00ff'],
 				['white', 'ffffff'],
