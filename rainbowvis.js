@@ -1,5 +1,5 @@
 /*
-RainbowVis-JS by Sophiah (Zing-Ming)
+RainbowVis-JS 
 Released under MIT License
 */
 
@@ -14,7 +14,7 @@ function Rainbow()
 	function setColours (spectrum) 
 	{
 		if (spectrum.length < 2) {
-			throw 'Rainbow must have two or more colours.';
+			throw new Error('Rainbow must have two or more colours.');
 		} else {
 			var increment = (maxNum - minNum)/(spectrum.length - 1);
 			var firstGradient = new ColourGradient();
@@ -46,7 +46,9 @@ function Rainbow()
 
 	this.colourAt = function (number)
 	{
-		if (gradients.length === 1) {
+		if (isNaN(number)) {
+			throw new TypeError(number + ' is not a number');
+		} else if (gradients.length === 1) {
 			return gradients[0].colourAt(number);
 		} else {
 			var segment = (maxNum - minNum)/(gradients.length);
@@ -63,7 +65,7 @@ function Rainbow()
 			maxNum = maxNumber;
 			setColours(colours);
 		} else {
-			throw 'maxNumber(' + maxNumber + ') is not greater than minNumber(' + minNumber + ')';
+			throw new RangeError('maxNumber (' + maxNumber + ') is not greater than minNumber (' + minNumber + ')');
 		}
 	}
 }
@@ -87,7 +89,7 @@ function ColourGradient()
 			minNum = minNumber;
 			maxNum = maxNumber;
 		} else {
-			throw 'maxNumber(' + maxNumber + ') is not greater than minNumber(' + minNumber + ')';
+			throw new RangeError('maxNumber (' + maxNumber + ') is not greater than minNumber (' + minNumber + ')');
 		}
 	}
 
@@ -161,7 +163,7 @@ function ColourGradient()
 					return colourNames[i][1];
 				}
 			}
-			throw string + ' is not a valid colour.';
+			throw new Error(string + ' is not a valid colour.');
 		}
 	}
 }
