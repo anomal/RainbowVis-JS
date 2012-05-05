@@ -14,3 +14,8 @@ See example.html
 `rainbow.setSpectrum(colour1, colour2 [,colourN]);` sets the spectrum of the Rainbow object. By default, the spectrum is a rainbow. You must have a minimum of two colours, but you can specify more than two colours. Colours can be in the form 'red', 'ff0000', or '#ff0000'. For example, `rainbow.setSpectrum('red', 'yellow', 'white');` makes the "Rainbow" a colour gradient from red to yellow to white.  
 
 `rainbow.setNumberRange(minNumber, maxNumber);` sets the number range of the Rainbow object. By default, it is 0 to 100.
+
+Related Libraries
+-----------------
+
+* [RainbowVis-Java](https://github.com/anomal/RainbowVis-Java) - Java version
