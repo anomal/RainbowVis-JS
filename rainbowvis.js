@@ -30,18 +30,22 @@ function Rainbow()
 			}
 
 			colours = spectrum;
+			return this;
 		}
 	}
+
 	this.setColors = this.setColours;
 
 	this.setSpectrum = function () 
 	{
 		setColours(arguments);
+		return this;
 	}
 
 	this.setSpectrumByArray = function (array)
 	{
 		setColours(array);
+        return this;
 	}
 
 	this.colourAt = function (number)
@@ -56,6 +60,7 @@ function Rainbow()
 			return gradients[index].colourAt(number);
 		}
 	}
+
 	this.colorAt = this.colourAt;
 
 	this.setNumberRange = function (minNumber, maxNumber)
@@ -67,6 +72,7 @@ function Rainbow()
 		} else {
 			throw new RangeError('maxNumber (' + maxNumber + ') is not greater than minNumber (' + minNumber + ')');
 		}
+		return this;
 	}
 }
 
