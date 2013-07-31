@@ -15,8 +15,8 @@ See example.html
 
 `rainbow.setNumberRange(minNumber, maxNumber);` sets the number range of the Rainbow object. By default, it is 0 to 100.
 
-Related Libraries
+Related Links
 -----------------
 
 * [RainbowVis-Java](https://github.com/anomal/RainbowVis-Java) - Java version
-* [rainbowvis-rails](https://github.com/Intrepidd/rainbowvis-rails) - Rails version by Intrepidd
+* [rainbowvis-rails](https://github.com/Intrepidd/rainbowvis-rails) - RainbowVis Rails gem by Intrepidd
