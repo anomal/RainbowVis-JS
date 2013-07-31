@@ -19,3 +19,4 @@ Related Libraries
 -----------------
 
 * [RainbowVis-Java](https://github.com/anomal/RainbowVis-Java) - Java version
+* [rainbowvis-rails](https://github.com/Intrepidd/rainbowvis-rails) - Rails version by Intrepidd
