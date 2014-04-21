@@ -1,6 +1,6 @@
 /*
 RainbowVis-JS 
-Released under MIT License
+Released under Eclipse Public License - v 1.0
 */
 
 function Rainbow()
