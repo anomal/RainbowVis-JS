@@ -17,16 +17,16 @@ window.onload = function(){
 		var rainbow = new Rainbow(); // by default, range is 0 to 100
 		var s = '<h3>Default</h3>';
 		for (var i = 0; i <= 100; i = i + 10) {
-			var hex = '#' + rainbow.colourAt(i);
+			var hex = '#' + rainbow.colorAt(i);
 			s += '<span style="color:' + hex + '">' + i + ' -&gt; ' + hex + '</span><br/>';
 		}
 
 		// Custom
 		s += '<h3>Custom</h3>';
-		rainbow.setSpectrum('red', 'FFFFFF', '#00ff00');
+		rainbow.setColorsByArray('red', 'FFFFFF', '#00ff00');
 		rainbow.setNumberRange(-0.5, 0.5);
 		for (var i = -5; i <= 5 ; i++) {
-			var hex = '#' + rainbow.colourAt(i/10);
+			var hex = '#' + rainbow.colorAt(i/10);
 			s += '<span style="color:' + hex + '">' + i/10 + ' -&gt; ' + hex + '</span><br/>';
 		}
 		document.getElementById("mappings").innerHTML = s;
@@ -46,14 +46,14 @@ window.onload = function(){
 		];
 
 		var heatmap = new Rainbow(); 
-		heatmap.setSpectrum('black', 'blue', 'aqua', 'lime', 'yellow', 'red');
+		heatmap.setColorsByArray('black', 'blue', 'aqua', 'lime', 'yellow', 'red');
 		heatmap.setNumberRange(0, 3065);
 		var table = '<table><tr><th>Linux Distribution</th><th>Popularity (hits per day)</th></tr>';
 		for (var i = 0; i < distros.length; i++) {
 			var distroName = distros[i][0];
 			var hits = distros[i][1];
 			table += '<tr><td>' + distroName + '</td>';
-			var hexColour = '#' + heatmap.colourAt(hits);
+			var hexColour = '#' + heatmap.colorAt(hits);
 			table += '<td style="background-color:' + hexColour + '">' + hits + '</td></tr>';
 		}
 		table += '</table>';
@@ -64,7 +64,7 @@ window.onload = function(){
 		var RAINBOW_RADIUS = 130;
 		var rainbow2 = new Rainbow();
 		rainbow2.setNumberRange(1, RAINBOW_WIDTH);
-		rainbow2.setSpectrum('FF0000', 'FFFF00', '00FF00', '00FFFF', '0000FF', 'FF00FF');
+		rainbow2.setColorsByArray('FF0000', 'FFFF00', '00FF00', '00FFFF', '0000FF', 'FF00FF');
 
 	    	var canvas = document.getElementById('MyRainbow');
 	    	var context = canvas.getContext('2d');
@@ -73,7 +73,7 @@ window.onload = function(){
 		for (var i = 1; i <= RAINBOW_WIDTH; i++) {
 			context.beginPath();
 			context.arc(canvas.width / 2, canvas.width / 2, RAINBOW_RADIUS - i + 1, Math.PI, 0, false);
-	    		context.strokeStyle = '#' + rainbow2.colourAt(i); 
+	    		context.strokeStyle = '#' + rainbow2.colorAt(i); 
 	    		context.stroke();
 		}
 	} catch (err) {

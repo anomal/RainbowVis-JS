@@ -3,174 +3,154 @@ RainbowVis-JS
 Released under Eclipse Public License - v 1.0
 */
 
-function Rainbow()
-{
-	var gradients = null;
-	var minNum = 0;
-	var maxNum = 100;
-	var colours = ['ff0000', 'ffff00', '00ff00', '0000ff']; 
-	setColours(colours);
-	
-	function setColours (spectrum) 
+var Rainbow = (function() {
+	function Rainbow()
+	{
+		this.gradients = [];
+		this.minNum = 0;
+		this.maxNum = 100;
+		this.colors = ['ff0000', 'ffff00', '00ff00', '0000ff']; 
+		this.setColors(this.colors);
+	}
+
+	Rainbow.prototype.setColors = function (spectrum) 
 	{
 		if (spectrum.length < 2) {
-			throw new Error('Rainbow must have two or more colours.');
+			throw new Error('Rainbow must have two or more colors.');
 		} else {
-			var increment = (maxNum - minNum)/(spectrum.length - 1);
-			var firstGradient = new ColourGradient();
-			firstGradient.setGradient(spectrum[0], spectrum[1]);
-			firstGradient.setNumberRange(minNum, minNum + increment);
-			gradients = [ firstGradient ];
+			var numParts = spectrum.length - 1;
+
+			var increment = (this.maxNum - this.minNum) / numParts;
 			
-			for (var i = 1; i < spectrum.length - 1; i++) {
-				var colourGradient = new ColourGradient();
-				colourGradient.setGradient(spectrum[i], spectrum[i + 1]);
-				colourGradient.setNumberRange(minNum + increment * i, minNum + increment * (i + 1)); 
-				gradients[i] = colourGradient; 
+			for (var i = 0; i < numParts; i++) {
+				this.gradients[i] = this.gradients[i] || new ColorGradient();
+
+				this.gradients[i].setGradient(spectrum[i], spectrum[i + 1]);
+				this.gradients[i].setNumberRange(this.minNum + increment * i, this.minNum + increment * (i + 1)); 
 			}
 
-			colours = spectrum;
+			this.gradients.splice(numParts);
+
+			this.colors = spectrum;
 			return this;
 		}
 	}
 
-	this.setColors = this.setColours;
-
-	this.setSpectrum = function () 
-	{
-		setColours(arguments);
-		return this;
+	Rainbow.prototype.setColorsByArray = function () {
+		return this.setColors(arguments);
 	}
 
-	this.setSpectrumByArray = function (array)
-	{
-		setColours(array);
-        return this;
-	}
-
-	this.colourAt = function (number)
+	Rainbow.prototype.colorAt = function (number)
 	{
 		if (isNaN(number)) {
 			throw new TypeError(number + ' is not a number');
-		} else if (gradients.length === 1) {
-			return gradients[0].colourAt(number);
+		} else if (this.gradients.length === 1) {
+			return this.gradients[0].colorAt(number);
 		} else {
-			var segment = (maxNum - minNum)/(gradients.length);
-			var index = Math.min(Math.floor((Math.max(number, minNum) - minNum)/segment), gradients.length - 1);
-			return gradients[index].colourAt(number);
+			var segment = (this.maxNum - this.minNum)/(this.gradients.length);
+			var deltaNum = Math.max(number, this.minNum) - this.minNum
+			var index = Math.min(Math.floor(deltaNum / segment), this.gradients.length - 1);
+			return this.gradients[index].colorAt(number);
 		}
 	}
 
-	this.colorAt = this.colourAt;
-
-	this.setNumberRange = function (minNumber, maxNumber)
+	Rainbow.prototype.setNumberRange = function (minNumber, maxNumber)
 	{
 		if (maxNumber > minNumber) {
-			minNum = minNumber;
-			maxNum = maxNumber;
-			setColours(colours);
+			this.minNum = minNumber;
+			this.maxNum = maxNumber;
+			this.setColors(this.colors);
 		} else {
 			throw new RangeError('maxNumber (' + maxNumber + ') is not greater than minNumber (' + minNumber + ')');
 		}
 		return this;
 	}
-}
 
-function ColourGradient() 
-{
-	var startColour = 'ff0000';
-	var endColour = '0000ff';
-	var minNum = 0;
-	var maxNum = 100;
+	return Rainbow;
+})();
 
-	this.setGradient = function (colourStart, colourEnd)
+var ColorGradient = (function() {
+	ColorGradient.colorNames =
+		[['red'   , 'lime'  , 'blue'  , 'yellow', 'orange', 'aqua'  , 'fuchsia', 'white' , 'black' , 'gray'  , 'grey'  , 'silver', 'maroon', 'olive' , 'green' , 'teal'  , 'navy'  , 'purple'],
+		 ['ff0000', '00ff00', '0000ff', 'ffff00', 'ff8000', '00ffff', 'ff00ff' , 'ffffff', '000000', '808080', '808080', 'c0c0c0', '800000', '808000', '008000', '008080', '000080', '800080']];
+
+	ColorGradient.hexRegex = /^#?[0-9a-fA-F]{6}$/i;
+
+
+	function ColorGradient() 
 	{
-		startColour = getHexColour(colourStart);
-		endColour = getHexColour(colourEnd);
+		this.startColor = 'ff0000';
+		this.endColor = '0000ff';
+		this.minNum = 0;
+		this.maxNum = 100;
 	}
 
-	this.setNumberRange = function (minNumber, maxNumber)
+	ColorGradient.prototype.setGradient = function (colorStart, colorEnd)
+	{
+		this.startColor = ColorGradient.getHexColor(colorStart);
+		this.endColor = ColorGradient.getHexColor(colorEnd);
+	}
+
+	ColorGradient.prototype.setNumberRange = function (minNumber, maxNumber)
 	{
 		if (maxNumber > minNumber) {
-			minNum = minNumber;
-			maxNum = maxNumber;
+			this.minNum = minNumber;
+			this.maxNum = maxNumber;
 		} else {
 			throw new RangeError('maxNumber (' + maxNumber + ') is not greater than minNumber (' + minNumber + ')');
 		}
 	}
 
-	this.colourAt = function (number)
+	ColorGradient.prototype.colorAt = function (number)
 	{
-		return calcHex(number, startColour.substring(0,2), endColour.substring(0,2)) 
-			+ calcHex(number, startColour.substring(2,4), endColour.substring(2,4)) 
-			+ calcHex(number, startColour.substring(4,6), endColour.substring(4,6));
+		return this.calcHex(number, this.startColor.substring(0,2), this.endColor.substring(0,2)) 
+			+ this.calcHex(number, this.startColor.substring(2,4), this.endColor.substring(2,4)) 
+			+ this.calcHex(number, this.startColor.substring(4,6), this.endColor.substring(4,6));
 	}
 	
-	function calcHex(number, channelStart_Base16, channelEnd_Base16)
+	ColorGradient.prototype.calcHex = function (number, channelStart_Base16, channelEnd_Base16)
 	{
-		var num = number;
-		if (num < minNum) {
-			num = minNum;
+		if (number < this.minNum) {
+			number = this.minNum;
 		}
-		if (num > maxNum) {
-			num = maxNum;
+		if (number > this.maxNum) {
+			number = this.maxNum;
 		} 
-		var numRange = maxNum - minNum;
+		var numRange = this.maxNum - this.minNum;
 		var cStart_Base10 = parseInt(channelStart_Base16, 16);
 		var cEnd_Base10 = parseInt(channelEnd_Base16, 16); 
 		var cPerUnit = (cEnd_Base10 - cStart_Base10)/numRange;
-		var c_Base10 = Math.round(cPerUnit * (num - minNum) + cStart_Base10);
-		return formatHex(c_Base10.toString(16));
+		var c_Base10 = Math.round(cPerUnit * (number - this.minNum) + cStart_Base10);
+		return ColorGradient.formatHex(c_Base10.toString(16));
 	}
 
-	formatHex = function (hex) 
+	ColorGradient.formatHex = function (hex) 
 	{
-		if (hex.length === 1) {
+		if (hex.length === 1) 
 			return '0' + hex;
-		} else {
+		else 
 			return hex;
-		}
 	} 
 	
-	function isHexColour(string)
+	ColorGradient.isHexColor = function (string)
 	{
-		var regex = /^#?[0-9a-fA-F]{6}$/i;
-		return regex.test(string);
+		return ColorGradient.hexRegex.test(string);
 	}
 
-	function getHexColour(string)
+	ColorGradient.getHexColor = function (string)
 	{
-		if (isHexColour(string)) {
+		if (ColorGradient.isHexColor(string)) {
 			return string.substring(string.length - 6, string.length);
 		} else {
-			var colourNames =
-			[
-				['red', 'ff0000'],
-				['lime', '00ff00'],
-				['blue', '0000ff'],
-				['yellow', 'ffff00'],
-				['orange', 'ff8000'],
-				['aqua', '00ffff'],
-				['fuchsia', 'ff00ff'],
-				['white', 'ffffff'],
-				['black', '000000'],
-				['gray', '808080'],
-				['grey', '808080'],
-				['silver', 'c0c0c0'],
-				['maroon', '800000'],
-				['olive', '808000'],
-				['green', '008000'],
-				['teal', '008080'],
-				['navy', '000080'],
-				['purple', '800080']
-			];
-			for (var i = 0; i < colourNames.length; i++) {
-				if (string.toLowerCase() === colourNames[i][0]) {
-					return colourNames[i][1];
-				}
-			}
-			throw new Error(string + ' is not a valid colour.');
+			var cn = ColorGradient.colorNames;
+			var pos = cn[0].indexOf(string.toLowerCase());
+
+			if (pos != -1)
+				return cn[1][pos];
+			else
+				throw new Error(string + ' is not a valid color.');
 		}
 	}
-}
 
+	return ColorGradient;
+})();
