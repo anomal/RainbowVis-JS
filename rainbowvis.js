@@ -38,14 +38,12 @@ function Rainbow()
 
 	this.setSpectrum = function () 
 	{
-		setColours(arguments);
-		return this;
+		return setColours(arguments);
 	}
 
 	this.setSpectrumByArray = function (array)
 	{
-		setColours(array);
-        return this;
+        return setColours(array);
 	}
 
 	this.colourAt = function (number)
