@@ -143,31 +143,29 @@ function ColourGradient()
 		if (isHexColour(string)) {
 			return string.substring(string.length - 6, string.length);
 		} else {
-			var colourNames =
-			[
-				['red', 'ff0000'],
-				['lime', '00ff00'],
-				['blue', '0000ff'],
-				['yellow', 'ffff00'],
-				['orange', 'ff8000'],
-				['aqua', '00ffff'],
-				['fuchsia', 'ff00ff'],
-				['white', 'ffffff'],
-				['black', '000000'],
-				['gray', '808080'],
-				['grey', '808080'],
-				['silver', 'c0c0c0'],
-				['maroon', '800000'],
-				['olive', '808000'],
-				['green', '008000'],
-				['teal', '008080'],
-				['navy', '000080'],
-				['purple', '800080']
-			];
-			for (var i = 0; i < colourNames.length; i++) {
-				if (string.toLowerCase() === colourNames[i][0]) {
-					return colourNames[i][1];
-				}
+			var colourNames = {
+					'red': 'ff0000',
+					'lime': '00ff00',
+					'blue': '0000ff',
+					'yellow': 'ffff00',
+					'orange': 'ff8000',
+					'aqua': '00ffff',
+					'fuchsia': 'ff00ff',
+					'white': 'ffffff',
+					'black': '000000',
+					'gray': '808080',
+					'grey': '808080',
+					'silver': 'c0c0c0',
+					'maroon': '800000',
+					'olive': '808000',
+					'green': '008000',
+					'teal': '008080',
+					'navy': '000080',
+					'purple': '800080'
+				},
+				name = string.toLowerCase();
+			if (colourNames.hasOwnProperty(name)) {
+				return colourNames[name];
 			}
 			throw new Error(string + ' is not a valid colour.');
 		}
