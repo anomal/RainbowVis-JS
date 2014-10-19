@@ -43,7 +43,7 @@ function Rainbow()
 	this.setSpectrumByArray = function (array)
 	{
 		setColours(array);
-        return this;
+		return this;
 	}
 
 	this.colourAt = function (number)
