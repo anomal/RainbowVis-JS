@@ -5,6 +5,7 @@ Released under Eclipse Public License - v 1.0
 
 function Rainbow()
 {
+	"use strict";
 	var gradients = null;
 	var minNum = 0;
 	var maxNum = 100;
@@ -75,6 +76,7 @@ function Rainbow()
 
 function ColourGradient() 
 {
+	"use strict";
 	var startColour = 'ff0000';
 	var endColour = '0000ff';
 	var minNum = 0;
@@ -120,7 +122,7 @@ function ColourGradient()
 		return formatHex(c_Base10.toString(16));
 	}
 
-	formatHex = function (hex) 
+	function formatHex(hex) 
 	{
 		if (hex.length === 1) {
 			return '0' + hex;
