@@ -30,7 +30,6 @@ function Rainbow()
 			}
 
 			colours = spectrum;
-			return this;
 		}
 	}
 
