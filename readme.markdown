@@ -15,6 +15,14 @@ See example.html
 
 `rainbow.setNumberRange(minNumber, maxNumber);` sets the number range of the Rainbow object. By default, it is 0 to 100.
 
+CommonJS
+--------
+### Installation
+`npm install rainbowvis.js`
+
+### Usage
+    var Rainbow = require('rainbowvis.js');
+    var myRainbow = new Rainbow();
 
 Related Links
 -----------------
