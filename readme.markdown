@@ -15,6 +15,7 @@ See example.html
 
 `rainbow.setNumberRange(minNumber, maxNumber);` sets the number range of the Rainbow object. By default, it is 0 to 100.
 
+
 Related Links
 -----------------
 

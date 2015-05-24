@@ -1,7 +1,7 @@
 {
   "name": "rainbowvis.js",
-  "version": "0.0.0",
-  "description": "A JavaScript library for colour data visualization. Easily map numbers to a smooth-transitioning colour legend. ",
+  "version": "1.0.0",
+  "description": "A JavaScript library for colour data visualization. Easily map numbers to a smooth-transitioning colour legend.",
   "main": "rainbowvis.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,12 +12,13 @@
   },
   "keywords": [
     "color",
+    "colour",
     "rainbow",
     "visualization",
-    "pallete"
+    "palette"
   ],
-  "author": "Sophiah (Zing-Ming) <zingming+github@gmail.com>",
-  "license": "EPL",
+  "author": "Sophiah Ho",
+  "license": "EPL-1.0",
   "bugs": {
     "url": "https://github.com/anomal/RainbowVis-JS/issues"
   },
