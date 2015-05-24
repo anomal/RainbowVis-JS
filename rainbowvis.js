@@ -303,3 +303,6 @@ function ColourGradient()
 	}
 }
 
+if (typeof module !== 'undefined') {
+  module.exports = Rainbow;
+}
