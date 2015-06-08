@@ -31,33 +31,81 @@ window.onload = function(){
 		}
 		document.getElementById("mappings").innerHTML = s;
 
-		// Distros
-		var distros = [
-		 	['Mint', 	3065],
-		 	['Ubuntu', 	2170],
-		 	['Fedora', 	1693],
-			['openSUSE', 	1398],
-		 	['Debian',	1365],
-		 	['Arch', 	1197],
-		 	['CentOS', 	980],
-		 	['PCLinuxOS',	950],
-		 	['Puppy', 	876],
-		 	['Mageia', 	770]
+		// Wattages
+		var wattages = [
+			["Clothes Dryer",5000],
+			["Air Conditioner (36,000 BTU)",4500],
+			["Water Heater (Quick Recovery)",4500],
+			["Range (Oven)",2660],
+			["Range (Self Cleaning Cycle)",2500],
+			["Power Tools (Circular Saw)",1800],
+			["Vacuum Cleaner",1560],
+			["Air Conditioner (12,000 BTU)",1500],
+			["Convection Oven",1500],
+			["Curling Iron",1500],
+			["Heater (Portable)",1500],
+			["Jacuzzi (Maintain Temperature, 2 Person)",1500],
+			["Microwave Oven",1500],
+			["Toaster",1400],
+			["Dishwasher (Dry Cycle)",1200],
+			["Fry Pan",1200],
+			["Waffle Iron",1200],
+			["Coffee Maker (Auto Drip)",1165],
+			["Hair Dryer (Hand Held)",1000],
+			["Heater (Auto Engine, Winter)",1000],
+			["Iron",1000],
+			["Motor (1 HP)",1000],
+			["Auto Engine Heater",600],
+			["Washer",512],
+			["Sump Pump (1/2 HP)",500],
+			["Water Pump (1/2 HP)",460],
+			["Dehumidifier (20 Pints, Summer)",450],
+			["Refrigerator/Freezer (Frostfree,17.5cu.ft.)",450],
+			["Freezer (Automatic Defrost 15 cu. ft.)",440],
+			["Disposal",420],
+			["Compactor",400],
+			["Fan (Attic)",400],
+			["Blender",385],
+			["Waterbed Heater (Queen Size)",375],
+			["Computer (With Monitor and Printer)",365],
+			["Satellite Dish (Includes Receiver)",360],
+			["Freezer (Manual Defrost, 15 cu. ft.)",350],
+			["Garage Door Opener",350],
+			["Heating System (Warm Air Fan)",312],
+			["CD, Tape, Radio, Receiver System",250],
+			["Heat Lamp",250],
+			["Dishwasher (Wash Cycle)",200],
+			["Television (Color, Solid State)",200],
+			["Heat Tape (30ft., Winter)",180],
+			["Humidifier (Winter)",177],
+			["Electric Blanket",175],
+			["Battery Charger (Car)",150],
+			["Lighting (Outdoor Floor)",120],
+			["Mixer, Hand",100],
+			["Fan (Ceiling)",80],
+			["Lighting (Incandescent)",75],
+			["Radio",71],
+			["Bug Zapper",40],
+			["Lighting (Fluorescent)",40],
+			["VCR/DVD",21],
+			["Lighting (Compact Fluorescent)",18],
+			["Clock",3]
 		];
 
 		var heatmap = new Rainbow(); 
 		heatmap.setSpectrum('black', 'blue', 'aqua', 'lime', 'yellow', 'red');
-		heatmap.setNumberRange(0, 3065);
-		var table = '<table><tr><th>Linux Distribution</th><th>Popularity (hits per day)</th></tr>';
-		for (var i = 0; i < distros.length; i++) {
-			var distroName = distros[i][0];
-			var hits = distros[i][1];
-			table += '<tr><td>' + distroName + '</td>';
-			var hexColour = '#' + heatmap.colourAt(hits);
-			table += '<td style="background-color:' + hexColour + '">' + hits + '</td></tr>';
+		heatmap.setNumberRange(0, 5000);
+		var table = '<table><tr><th>Appliance</th><th>Typical Wattage</th></tr>';
+		for (var i = 0; i < wattages.length; i++) {
+			var appliance = wattages[i][0];
+			var watts = wattages[i][1];
+			table += '<tr><td>' + appliance + '</td>';
+			var hexColour = '#' + heatmap.colourAt(watts);
+			table += '<td style="background-color:' + hexColour + '; color: #fff">' + watts + '</td></tr>';
 		}
 		table += '</table>';
-		document.getElementById("distros").innerHTML = table;
+		table += '<p>Source: <a href="http://www.cornhusker-power.com/householdappliances.asp">Operating Costs of Household Appliances</a></p>';
+		document.getElementById("wattages").innerHTML = table;
 
 		// Canvas Drawing
 		var RAINBOW_WIDTH = 60;
@@ -84,7 +132,7 @@ window.onload = function(){
 <h2>Mappings</h2>
 <div id="mappings"></div>
 <h2>Data Visualization</h2>
-<div id="distros"></div>
+<div id="wattages"></div>
 <h2>Canvas Drawing</h2>
 <canvas id="MyRainbow" width="300" height="300">
 <p>Rainbow arc example. Your browser doesn't support canvas.</p>
