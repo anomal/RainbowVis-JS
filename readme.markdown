@@ -30,5 +30,6 @@ Related Links
 * [RainbowVis-Java](https://github.com/anomal/RainbowVis-Java) - Java version
 * [rainbowvis-rails](https://github.com/Intrepidd/rainbowvis-rails) - RainbowVis Rails gem by Intrepidd
 * [rainbowvis-dart](https://github.com/ilikerobots/rainbowvis-dart) - Dart version by ilikerobots
+* [RainbowVis](https://github.com/danesparza/RainbowVis) - Go version by danesparza
 
 
